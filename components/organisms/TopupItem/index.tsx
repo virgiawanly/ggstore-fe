@@ -1,5 +1,3 @@
-import React from "react";
-
 interface TopupItemProps {
   type: "desktop" | "mobile";
 }

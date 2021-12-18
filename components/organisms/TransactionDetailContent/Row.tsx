@@ -1,5 +1,3 @@
-import React from "react";
-
 interface RowProps {
   label: string;
   value: string | number;

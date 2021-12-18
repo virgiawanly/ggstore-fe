@@ -1,4 +1,3 @@
-import React from "react";
 import MemberSidebar from "../../../components/organisms/MemberSidebar";
 import TransactionContent from "../../../components/organisms/TransactionContent";
 

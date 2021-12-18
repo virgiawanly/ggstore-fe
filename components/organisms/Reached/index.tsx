@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Reached() {
   return (
     <section className="reached pt-50 pb-50">
@@ -13,8 +11,8 @@ export default function Reached() {
               Players Top Up
             </p>
           </div>
-          <div className="vertical-line me-lg-35 ms-lg-35 d-lg-block d-none"></div>
-          <div className="horizontal-line mt-6 mb-6 me-lg-35 ms-lg-35 d-lg-none d-block"></div>
+          <div className="vertical-line me-lg-35 ms-lg-35 d-lg-block d-none " />
+          <div className="horizontal-line mt-6 mb-6 me-lg-35 ms-lg-35 d-lg-none d-block" />
           <div className="me-lg-35 ms-lg-35">
             <p className="text-4xl text-lg-start text-center color-palette-1 fw-bold m-0">
               12.500
@@ -23,8 +21,8 @@ export default function Reached() {
               Games Available
             </p>
           </div>
-          <div className="horizontal-line mt-6 mb-6 me-lg-35 ms-lg-35 d-lg-none d-block"></div>
-          <div className="vertical-line me-lg-35 ms-lg-35 d-lg-block d-none"></div>
+          <div className="horizontal-line mt-6 mb-6 me-lg-35 ms-lg-35 d-lg-none d-block" />
+          <div className="vertical-line me-lg-35 ms-lg-35 d-lg-block d-none" />
           <div className="me-lg-35 ms-lg-35">
             <p className="text-4xl text-lg-start text-center color-palette-1 fw-bold m-0">
               99,9%
@@ -33,8 +31,8 @@ export default function Reached() {
               Happy Players
             </p>
           </div>
-          <div className="horizontal-line mt-6 mb-6 me-lg-35 ms-lg-35 d-lg-none d-block"></div>
-          <div className="vertical-line me-lg-35 ms-lg-35 d-lg-block d-none"></div>
+          <div className="horizontal-line mt-6 mb-6 me-lg-35 ms-lg-35 d-lg-none d-block" />
+          <div className="vertical-line me-lg-35 ms-lg-35 d-lg-block d-none" />
           <div className="me-lg-35 ms-lg-35">
             <p className="text-4xl text-lg-start text-center color-palette-1 fw-bold m-0">
               4.7

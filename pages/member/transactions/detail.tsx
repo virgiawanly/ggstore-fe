@@ -1,10 +1,9 @@
-import React from 'react'
-import TransactionDetailContent from '../../../components/organisms/TransactionDetailContent'
+import TransactionDetailContent from "../../../components/organisms/TransactionDetailContent";
 
 export default function Detail() {
-    return (
-        <section className="transactions-detail overflow-auto">
-        <TransactionDetailContent />
+  return (
+    <section className="transactions-detail overflow-auto">
+      <TransactionDetailContent />
     </section>
-    )
+  );
 }

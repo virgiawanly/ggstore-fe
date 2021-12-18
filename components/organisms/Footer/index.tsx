@@ -1,4 +1,3 @@
-import React from "react";
 import FooterDescription from "./FooterDescription";
 import FooterMenus from "./FooterMenus";
 

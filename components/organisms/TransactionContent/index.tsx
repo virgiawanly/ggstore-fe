@@ -1,4 +1,3 @@
-import React from "react";
 import TableRow from "../TransactionContent/TableRow";
 import ButtonTab from "./ButtonTab";
 

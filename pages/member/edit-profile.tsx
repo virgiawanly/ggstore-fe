@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import MemberSidebar from "../../components/organisms/MemberSidebar";
 import Input from "../../components/atoms/Input";
@@ -19,6 +18,7 @@ export default function EditProfile() {
                     width="90"
                     height="90"
                     className="avatar img-fluid"
+                    alt="Avatar"
                   />
                   <div className="avatar-overlay position-absolute top-0 d-flex justify-content-center align-items-center">
                     <Image
@@ -47,13 +47,13 @@ export default function EditProfile() {
                 </div>
               </div>
               <div className="pt-30">
-               <Input label="Full Name"/>
+                <Input label="Full Name" />
               </div>
               <div className="pt-30">
-               <Input label="Email Address" />
+                <Input label="Email Address" />
               </div>
               <div className="pt-30">
-               <Input label="Phone" />
+                <Input label="Phone" />
               </div>
               <div className="button-group d-flex flex-column pt-50">
                 <button

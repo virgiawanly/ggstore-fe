@@ -1,7 +1,5 @@
-import React from "react";
-
 interface StepItemProps {
-  icon: 'step1' | 'step2' | 'step3';
+  icon: "step1" | "step2" | "step3";
   title: string;
   desc1: string;
   desc2: string;
@@ -17,6 +15,7 @@ export default function StepItem(props: StepItemProps) {
           className="mb-30"
           width="80"
           height="80"
+          alt="Icon"
         />
         <p className="fw-semibold text-2xl mb-2 color-palette-1">{title}</p>
         <p className="text-lg color-palette-1 mb-0">

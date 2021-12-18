@@ -1,4 +1,3 @@
-import React from "react";
 import TableRow from "./TableRow";
 import TopupCategory from "./TopupCategory";
 
@@ -13,14 +12,20 @@ export default function OverviewContent() {
           </p>
           <div className="main-content">
             <div className="row">
-              <TopupCategory icon="ic-category-desktop" nominal="18500000">
-                Game <br /> Desktop
+              <TopupCategory icon="ic-category-desktop" nominal={18500000}>
+                Game
+                <br />
+                Desktop
               </TopupCategory>
-              <TopupCategory icon="ic-category-mobile" nominal="84450000">
-                Game <br /> Mobile
+              <TopupCategory icon="ic-category-mobile" nominal={84450000}>
+                Game
+                <br />
+                Mobile
               </TopupCategory>
-              <TopupCategory icon="ic-category-others" nominal="5000000">
-                Other <br /> Categories
+              <TopupCategory icon="ic-category-others" nominal={5000000}>
+                Other
+                <br />
+                Categories
               </TopupCategory>
             </div>
           </div>
@@ -46,7 +51,7 @@ export default function OverviewContent() {
                   title="Valorant"
                   category="Desktop"
                   item="1000 VP"
-                  price="149000"
+                  price={149000}
                   status="Success"
                   image="/img/Thumbnail-1.png"
                 />
@@ -54,7 +59,7 @@ export default function OverviewContent() {
                   title="Call Of Duty Mobile"
                   category="Mobile"
                   item="550 Gold"
-                  price="90000"
+                  price={90000}
                   status="Pending"
                   image="/img/Thumbnail-2.png"
                 />
@@ -62,7 +67,7 @@ export default function OverviewContent() {
                   title="Clash Of Clans"
                   category="Mobile"
                   item="1000 Gems"
-                  price="24000"
+                  price={24000}
                   status="Success"
                   image="/img/Thumbnail-3.png"
                 />
@@ -70,7 +75,7 @@ export default function OverviewContent() {
                   title="Clash Royale"
                   category="Mobile"
                   item="1000 Gems"
-                  price="20000"
+                  price={20000}
                   status="Failed"
                   image="/img/Thumbnail-4.png"
                 />

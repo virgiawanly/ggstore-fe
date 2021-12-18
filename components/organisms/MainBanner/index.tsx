@@ -1,5 +1,3 @@
-import React from "react";
-import Image from "next/image";
 import BannerImage from "./BannerImage";
 
 export default function MainBanner() {

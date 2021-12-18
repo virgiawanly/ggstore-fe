@@ -1,4 +1,3 @@
-import React from "react";
 import cn from "classnames";
 
 interface TableRowProps {
@@ -18,7 +17,7 @@ export default function TableRow(props: TableRowProps) {
     success: status === "Success",
     failed: status === "Failed",
   });
-  
+
   return (
     <tr className="align-middle">
       <th scope="row">

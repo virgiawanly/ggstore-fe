@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import type { NextPage } from "next";
 import AOS from "aos";
 import Navbar from "../components/organisms/Navbar";

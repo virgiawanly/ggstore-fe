@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 export default function FooterDescription() {
@@ -9,7 +8,8 @@ export default function FooterDescription() {
       </a>
       <p className="mt-30 text-lg color-palette-1 mb-30">
         StoreGG membantu gamers
-        <br /> untuk menjadi pemenang sejati
+        <br />
+        untuk menjadi pemenang sejati
       </p>
       <p className="mt-30 text-lg color-palette-1 mb-30">
         Copyright 2021. All Rights Reserved.

@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 export default function SidebarFooter() {
@@ -8,7 +7,8 @@ export default function SidebarFooter() {
         <div className="d-flex justify-content-between mb-20">
           <Image src="/icon/footer.svg" width="50" height="50" />
           <p className="fw-medium color-palette-1">
-            Top Up &<br />
+            Top Up &
+            <br />
             Be The Winner
           </p>
         </div>

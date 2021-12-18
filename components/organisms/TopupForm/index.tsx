@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function TopupForm() {
   return (
     <form action="./checkout.html" method="POST">

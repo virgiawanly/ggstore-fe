@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Story() {
   return (
     <section className="story pt-50 pb-50">

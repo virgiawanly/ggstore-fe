@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import cn from "classnames";
 
@@ -9,7 +8,7 @@ interface NavLinkProps {
 }
 
 export default function NavLink(props: Partial<NavLinkProps>) {
-  const { title, active, href = '/' } = props;
+  const { title, active, href = "/" } = props;
   const linkClasses = cn({
     "nav-link": true,
     active,
