@@ -23,6 +23,8 @@
     "react/function-component-definition": "off",
     "quotes": "off",
     "react/jsx-props-no-spreading": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-underscore-dangle": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }

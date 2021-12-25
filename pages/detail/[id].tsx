@@ -2,8 +2,36 @@ import TopupForm from "../../components/organisms/TopupForm";
 import TopupItem from "../../components/organisms/TopupItem";
 import Navbar from "../../components/organisms/Navbar";
 import Footer from "../../components/organisms/Footer";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import { getVoucherDetail } from "../../services/player";
 
 export default function Detail() {
+  const { query, isReady } = useRouter();
+  const [gameItem, setGameItem] = useState({
+    name: "",
+    thumbnail: "",
+    category: {
+      name: "",
+    },
+  });
+
+  const [nominals, setNominals] = useState([]);
+  const [payments, setPayments] = useState([]);
+
+  const getVoucherDetailAPI = useCallback(async (id) => {
+    const data = await getVoucherDetail(id);
+    setGameItem(data.detail);
+    setNominals(data.detail.nominals);
+    setPayments(data.payments);
+  }, []);
+
+  useEffect(() => {
+    if (isReady) {
+      getVoucherDetailAPI(query.id);
+    }
+  }, [isReady]);
+
   return (
     <>
       <Navbar />
@@ -19,12 +47,12 @@ export default function Detail() {
           </div>
           <div className="row">
             <div className="col-xl-3 col-lg-4 col-md-5 pb-30 pb-md-0 pe-md-25 text-md-start">
-              <TopupItem type="mobile" />
+              <TopupItem data={gameItem} type="mobile" />
             </div>
             <div className="col-xl-9 col-lg-8 col-md-7 ps-md-25">
-              <TopupItem type="desktop" />
+              <TopupItem data={gameItem} type="desktop" />
               <hr />
-              <TopupForm />
+              <TopupForm nominals={nominals} payments={payments} />
             </div>
           </div>
         </div>
