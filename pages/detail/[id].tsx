@@ -1,13 +1,15 @@
-import TopupForm from "../../components/organisms/TopupForm";
-import TopupItem from "../../components/organisms/TopupItem";
-import Navbar from "../../components/organisms/Navbar";
-import Footer from "../../components/organisms/Footer";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
+import Footer from "../../components/organisms/Footer";
+import Navbar from "../../components/organisms/Navbar";
+import TopupForm from "../../components/organisms/TopupForm";
+import TopupItem from "../../components/organisms/TopupItem";
 import { getVoucherDetail } from "../../services/player";
 
 export default function Detail() {
   const { query, isReady } = useRouter();
+  const [nominals, setNominals] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [gameItem, setGameItem] = useState({
     name: "",
     thumbnail: "",
@@ -16,14 +18,11 @@ export default function Detail() {
     },
   });
 
-  const [nominals, setNominals] = useState([]);
-  const [payments, setPayments] = useState([]);
-
   const getVoucherDetailAPI = useCallback(async (id) => {
-    const data = await getVoucherDetail(id);
-    setGameItem(data.detail);
-    setNominals(data.detail.nominals);
-    setPayments(data.payments);
+    const res = await getVoucherDetail(id);
+    setGameItem(res.data.detail);
+    setNominals(res.data.detail.nominals);
+    setPayments(res.data.payments);
   }, []);
 
   useEffect(() => {

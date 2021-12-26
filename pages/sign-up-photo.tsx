@@ -1,10 +1,10 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { postSignUp } from "../services/auth";
 import { getGameCategoy } from "../services/player";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import router, { useRouter } from "next/router";
 
 export default function SignUpPhoto() {
   const router = useRouter();
@@ -19,14 +19,14 @@ export default function SignUpPhoto() {
   });
 
   const getGameCategoryAPI = useCallback(async () => {
-    const data = await getGameCategoy();
-    setCategories(data);
-    setFavorite(data[0]._id);
+    const res = await getGameCategoy();
+    setCategories(res.data);
+    setFavorite(res.data[0]._id);
   }, [getGameCategoy]);
 
   const submitHandler = async () => {
     const getLocalForm = localStorage.getItem("user-form");
-    const form = JSON.parse(getLocalForm);
+    const form = JSON.parse(getLocalForm!);
     const fData = new FormData();
     fData.append("image", image);
     fData.append("name", form.name);
@@ -37,16 +37,16 @@ export default function SignUpPhoto() {
     fData.append("role", "user");
     fData.append("status", "Y");
     fData.append("favorite", favorite);
-    const result = await postSignUp(fData);
 
-    if (result.error === true) {
-      toast.error(result.message);
-      return router.push("/sign-up");
+    const res = await postSignUp(fData);
+    if (res.success) {
+      toast.success("Registrasi berhasil");
+      localStorage.removeItem("user-form");
+      return router.push("/sign-up-success");
     }
 
-    toast.success("Registrasi berhasil");
-    router.push("/sign-up-success");
-    localStorage.removeItem("user-form");
+    toast.error(res.message);
+    return router.push("/sign-up");
   };
 
   useEffect(() => {
@@ -55,7 +55,8 @@ export default function SignUpPhoto() {
 
   useEffect(() => {
     const getLocalForm = localStorage.getItem("user-form");
-    setLocalForm(JSON.parse(getLocalForm));
+    if (!getLocalForm) return router.replace("/sign-up");
+    setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
   return (
@@ -83,7 +84,7 @@ export default function SignUpPhoto() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(e) => {
-                      const img = e.target.files[0];
+                      const img = e.target.files![0];
                       setImagePreview(URL.createObjectURL(img));
                       setImage(img);
                     }}

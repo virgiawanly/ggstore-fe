@@ -1,4 +1,5 @@
 import cn from "classnames";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -79,13 +80,14 @@ export default function SignUpForm() {
         >
           Continue
         </button>
-        <a
-          className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill"
-          href="/sign-in"
-          role="button"
-        >
-          Sign In
-        </a>
+        <Link href="/sign-in">
+          <a
+            className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill"
+            role="button"
+          >
+            Sign In
+          </a>
+        </Link>
       </div>
     </>
   );

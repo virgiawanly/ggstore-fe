@@ -1,4 +1,36 @@
+import Cookies from "js-cookie";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { postSignIn } from "../../../services/auth";
+
 export default function SignInForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const submitHandler = async () => {
+    const payload = { email, password };
+
+    if (!email || !password) {
+      return toast.error("Email & password harus diisi");
+    }
+
+    const res = await postSignIn(payload);
+    if (res.success) {
+      toast.success("Login berhasil");
+      const token = res.data.token;
+      const tokenBase64 = btoa(token);
+      Cookies.set("token", tokenBase64, { expires: 1 });
+      return router.push("/");
+    }
+
+    return toast.error(res.message ?? "Email atau password salah");
+  };
+
   return (
     <>
       <h2 className="text-4xl fw-bold color-palette-1 mb-10">Sign In</h2>
@@ -6,53 +38,47 @@ export default function SignInForm() {
         Masuk untuk melakukan proses top up
       </p>
       <div className="pt-50">
-        <label
-          htmlFor="email"
-          className="form-label text-lg fw-medium color-palette-1 mb-10"
-        >
+        <label className="form-label text-lg fw-medium color-palette-1 mb-10">
           Email Address
         </label>
         <input
           type="email"
           className="form-control rounded-pill text-lg"
-          id="email"
-          name="email"
-          aria-describedby="email"
           placeholder="Enter your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="pt-30">
-        <label
-          htmlFor="password"
-          className="form-label text-lg fw-medium color-palette-1 mb-10"
-        >
+        <label className="form-label text-lg fw-medium color-palette-1 mb-10">
           Password
         </label>
         <input
           type="password"
           className="form-control rounded-pill text-lg"
-          id="password"
-          name="password"
-          aria-describedby="password"
           placeholder="Your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="button-group d-flex flex-column mx-auto pt-50">
-        <a
+        <button
           className="btn btn-sign-in fw-medium text-lg text-white rounded-pill mb-16"
-          href="../index.html"
-          role="button"
+          type="button"
+          onClick={submitHandler}
         >
           Continue to Sign In
-        </a>
-        <a
-          className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill"
-          href="./sign-up"
-          role="button"
-        >
-          Sign Up
-        </a>
+        </button>
+        <Link href="/sign-up">
+          <a
+            className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill"
+            role="button"
+          >
+            Sign Up
+          </a>
+        </Link>
       </div>
+      <ToastContainer />
     </>
   );
 }

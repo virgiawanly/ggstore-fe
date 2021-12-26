@@ -1,10 +1,8 @@
-import { CategoryTypes } from "../../../services/data-types";
-
 interface TopupItemProps {
   type: "desktop" | "mobile";
   data: {
     name: string;
-    thumbnail: string;
+    thumbnail?: string;
     category: {
       name: string;
     };
