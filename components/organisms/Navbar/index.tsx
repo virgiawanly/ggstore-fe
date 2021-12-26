@@ -19,7 +19,7 @@ export default function Navbar() {
               <NavLink title="Rewards" href="/rewards" />
               <NavLink title="Discover" />
               <NavLink title="Global Rank" />
-              <NavAuth isLogin />
+              <NavAuth />
             </ul>
           </div>
         </div>
