@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { postSignUp } from "../services/auth";
 import { getGameCategoy } from "../services/player";
 
@@ -140,7 +139,6 @@ export default function SignUpPhoto() {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </section>
   );
 }

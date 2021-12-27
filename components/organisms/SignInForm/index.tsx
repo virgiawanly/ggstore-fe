@@ -2,8 +2,7 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { postSignIn } from "../../../services/auth";
 
 export default function SignInForm() {
@@ -21,7 +20,6 @@ export default function SignInForm() {
 
     const res = await postSignIn(payload);
     if (res.success) {
-      toast.success("Login berhasil");
       const token = res.data.token;
       const tokenBase64 = btoa(token);
       Cookies.set("token", tokenBase64, { expires: 1 });
@@ -78,7 +76,6 @@ export default function SignInForm() {
           </a>
         </Link>
       </div>
-      <ToastContainer />
     </>
   );
 }

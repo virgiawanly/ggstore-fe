@@ -1,8 +1,31 @@
 import axios, { AxiosRequestConfig } from "axios";
+import Cookies from "js-cookie";
 
-const callAPI = async ({ url, method, data }: AxiosRequestConfig) => {
+interface CallAPIProps extends AxiosRequestConfig {
+  token?: boolean;
+}
+
+const callAPI = async ({ url, method, data, token }: CallAPIProps) => {
   try {
-    const res = await axios({ url, method, data });
+    let headers = {};
+
+    if (token) {
+      const cookiesToken = Cookies.get("token");
+      if (cookiesToken) {
+        const jwtToken = atob(cookiesToken);
+        headers = {
+          Authorization: `Bearer ${jwtToken}`,
+        };
+      }
+    }
+
+    const res = await axios({
+      url,
+      method,
+      data,
+      headers,
+    });
+
     return {
       success: true,
       message: res.data.message ?? "success",
@@ -12,7 +35,7 @@ const callAPI = async ({ url, method, data }: AxiosRequestConfig) => {
     const res = err.response;
     return {
       success: false,
-      message: res.data.message,
+      message: res.data.message ?? "Error",
       data: null,
     };
   }
