@@ -52,7 +52,7 @@ export default function TableRow(props: TableRowProps) {
             displayType="text"
             thousandSeparator="."
             decimalSeparator=","
-            prefix="Rp "
+            prefix="Rp. "
           />
         </p>
       </td>

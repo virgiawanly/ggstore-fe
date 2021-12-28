@@ -1,22 +1,24 @@
 import Link from "next/link";
 import cn from "classnames";
+import NumberFormat from "react-number-format";
 
 interface TableRowProps {
+  id: string;
   title: string;
   category: string;
   item: string;
   price: number;
-  status: "Pending" | "Success" | "Failed";
+  status: string;
   image: string;
 }
 
 export default function TableRow(props: TableRowProps) {
-  const { image, title, category, item, price, status } = props;
+  const { id, image, title, category, item, price, status } = props;
   const statusClass = cn({
     "float-start icon-status": true,
-    pending: status === "Pending",
-    success: status === "Success",
-    failed: status === "Failed",
+    pending: status === "pending",
+    success: status === "success",
+    failed: status === "failed",
   });
 
   return (
@@ -42,18 +44,26 @@ export default function TableRow(props: TableRowProps) {
         <p className="fw-medium color-palette-1 m-0">{item}</p>
       </td>
       <td>
-        <p className="fw-medium color-palette-1 m-0">{price}</p>
+        <p className="fw-medium color-palette-1 m-0">
+          <NumberFormat
+            value={price}
+            displayType="text"
+            thousandSeparator="."
+            decimalSeparator=","
+            prefix="Rp. "
+          />
+        </p>
       </td>
       <td>
         <div>
-          <span className={statusClass}></span>
+          <span className={statusClass} />
           <p className="fw-medium text-start color-palette-1 m-0 position-relative">
             {status}
           </p>
         </div>
       </td>
       <td>
-        <Link href="/member/transactions/detail">
+        <Link href={`/member/transactions/${id}`}>
           <a className="btn btn-status rounded-pill text-sm">Details</a>
         </Link>
       </td>

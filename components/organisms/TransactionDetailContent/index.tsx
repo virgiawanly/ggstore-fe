@@ -1,11 +1,30 @@
+import { TransactionHistoryTypes } from "../../../services/data-types";
 import Row from "./Row";
+import cn from "classnames";
 
-export default function TransactionDetailContent() {
+interface TransactionDetailContentProps {
+  data: TransactionHistoryTypes;
+}
+
+export default function TransactionDetailContent(
+  props: TransactionDetailContentProps
+) {
+  const { data } = props;
+
+  const IMG = process.env.NEXT_PUBLIC_IMG_URL;
+
+  const statusClass = cn({
+    "fw-medium text-center label pending m-0 rounded-pill": true,
+    pending: data.status === "pending",
+    success: data.status === "success",
+    failed: data.status === "failed",
+  });
+
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
         <h2 className="text-4xl fw-bold color-palette-1 mb-30">
-          Details #GG001
+          Details #{data._id}
         </h2>
         <div className="details">
           <div className="main-content main-content-card overflow-auto">
@@ -15,26 +34,26 @@ export default function TransactionDetailContent() {
                   <div className="pe-4">
                     <div className="cropped">
                       <img
-                        src="/img/Thumbnail-3.png"
+                        src={`${IMG}/${data.voucherTopupHistory.thumbnail}`}
                         width="200"
                         height="130"
                         className="img-fluid"
-                        alt=""
+                        alt="Thumbnail"
                       />
                     </div>
                   </div>
                   <div>
                     <p className="fw-bold text-xl color-palette-1 mb-10">
-                      Mobile Legends:
-                      <br /> The New Battle 2021
+                      {data.voucherTopupHistory.gameName}
                     </p>
-                    <p className="color-palette-2 m-0">Category: Mobile</p>
+                    <p className="color-palette-2 m-0">
+                      Category:
+                      {data.voucherTopupHistory.category}
+                    </p>
                   </div>
                 </div>
                 <div>
-                  <p className="fw-medium text-center label pending m-0 rounded-pill">
-                    Pending
-                  </p>
+                  <p className={statusClass}>{data.status}</p>
                 </div>
               </div>
               <hr />
@@ -42,14 +61,17 @@ export default function TransactionDetailContent() {
                 <h2 className="fw-bold text-xl color-palette-1 mb-20">
                   Purchase Details
                 </h2>
-                <Row label="Your game id" value="dotEnv" />
-                <Row label="Order ID" value="#GG001" />
-                <Row label="Item" value="250 Diamonds" />
-                <Row label="Price" value={500000} />
-                <Row label="Tax (10%)" value={50000} />
+                <Row label="Your game id" value={data.userAccount} />
+                <Row label="Order ID" value={data._id} />
+                <Row
+                  label="Item"
+                  value={`${data.voucherTopupHistory.coinQuantity} ${data.voucherTopupHistory.coinName}`}
+                />
+                <Row label="Price" value={data.voucherTopupHistory.price} />
+                <Row label="Tax (10%)" value={data.tax} />
                 <Row
                   label="Total"
-                  value="Rp. 55.000.000"
+                  value={data.value}
                   className="color-palette-4"
                 />
               </div>
@@ -57,11 +79,17 @@ export default function TransactionDetailContent() {
                 <h2 className="fw-bold text-xl color-palette-1 mb-20">
                   Payment Informations
                 </h2>
-                <Row label="Your Account Name" value="Virgiawan Listiyandi" />
-                <Row label="Type" value="Worldwide Transfer" />
-                <Row label="Bank Name" value="Mandiri" />
-                <Row label="Bank Account Name" value="PT Store GG Indonesia" />
-                <Row label="Bank Number" value="1000 - 9000 - 2021" />
+                <Row label="Your Account Name" value={data.name} />
+                <Row label="Type" value={data.paymentHistory.type} />
+                <Row label="Bank Name" value={data.paymentHistory.bankName} />
+                <Row
+                  label="Bank Account Name"
+                  value={data.paymentHistory.name}
+                />
+                <Row
+                  label="Bank Number"
+                  value={data.paymentHistory.noRekening}
+                />
               </div>
               <div className="d-md-block d-flex flex-column w-100">
                 <a

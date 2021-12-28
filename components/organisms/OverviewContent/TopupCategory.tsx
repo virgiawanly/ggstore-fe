@@ -25,7 +25,7 @@ export default function TopupCategory(props: TopupCategoryProps) {
               displayType="text"
               thousandSeparator="."
               decimalSeparator=","
-              prefix="Rp "
+              prefix="Rp. "
             />
           </p>
         </div>

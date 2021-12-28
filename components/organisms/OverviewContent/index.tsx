@@ -4,7 +4,7 @@ import {
   TopupCategoryTypes,
   TransactionHistoryTypes,
 } from "../../../services/data-types";
-import { getMemberOverview } from "../../../services/player";
+import { getMemberOverview } from "../../../services/member";
 import TableRow from "./TableRow";
 import TopupCategory from "./TopupCategory";
 
@@ -15,10 +15,11 @@ export default function OverviewContent() {
   const fetchMemberOverview = useCallback(async () => {
     const res = await getMemberOverview();
     if (!res.success) {
-      toast.error("Gagal mengambil data");
+      return toast.error("Gagal mengambil data");
     }
     setCounts(res.data.counts);
     setData(res.data.data);
+    return () => {};
   }, []);
 
   useEffect(() => {
