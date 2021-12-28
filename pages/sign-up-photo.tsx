@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { postSignUp } from "../services/auth";
+import { CategoryTypes } from "../services/data-types";
 import { getGameCategoy } from "../services/player";
 
 export default function SignUpPhoto() {
@@ -10,8 +11,8 @@ export default function SignUpPhoto() {
 
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState("");
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState("/icon/upload.svg");
+  const [image, setImage] = useState<any>(null);
+  const [imagePreview, setImagePreview] = useState<any>("/icon/upload.svg");
   const [localForm, setLocalForm] = useState({
     name: "",
     email: "",
@@ -41,11 +42,11 @@ export default function SignUpPhoto() {
     if (res.success) {
       toast.success("Registrasi berhasil");
       localStorage.removeItem("user-form");
-      return router.push("/sign-up-success");
+      router.push("/sign-up-success");
+    } else {
+      toast.error(res.message);
+      router.push("/sign-up");
     }
-
-    toast.error(res.message);
-    return router.push("/sign-up");
   };
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function SignUpPhoto() {
 
   useEffect(() => {
     const getLocalForm = localStorage.getItem("user-form");
-    if (!getLocalForm) return router.replace("/sign-up");
+    if (!getLocalForm) router.replace("/sign-up");
     setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
@@ -111,7 +112,7 @@ export default function SignUpPhoto() {
                   value={favorite}
                   onChange={(e) => setFavorite(e.target.value)}
                 >
-                  {categories.map((category) => (
+                  {categories.map((category: CategoryTypes) => (
                     <option value={category._id} key={category._id}>
                       {category.name}
                     </option>

@@ -31,7 +31,8 @@ export default function CheckoutItem() {
       <div>
         <p className="fw-bold text-xl color-palette-1 mb-10">{dataItem.name}</p>
         <p className="color-palette-2 m-0">
-          Category: {dataItem.category.name}
+          <span>Category: </span>
+          <span>{dataItem.category.name}</span>
         </p>
       </div>
     </div>

@@ -1,8 +1,8 @@
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import MenuItem from "./MenuItem";
 import Footer from "./SidebarFooter";
 import Profile from "./SidebarProfile";
-import MenuItem from "./MenuItem";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
 
 interface MemberSidebarProps {
   activeMenu?: "overview" | "transactions" | "settings";

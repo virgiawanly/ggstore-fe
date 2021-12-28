@@ -27,7 +27,6 @@ export default function CheckoutDetail() {
   useEffect(() => {
     const getLocalDataTopup = localStorage.getItem("data-topup");
     const localDataTopup = JSON.parse(getLocalDataTopup!);
-    console.log(localDataTopup);
     setDataTopup(localDataTopup);
   }, []);
 
@@ -52,7 +51,7 @@ export default function CheckoutDetail() {
         <p className="text-lg color-palette-1 mb-20">
           Item
           <span className="purchase-details">
-            {dataTopup.nominalItem.coinQuantity}{" "}
+            {dataTopup.nominalItem.coinQuantity}
             {dataTopup.nominalItem.coinName}
           </span>
         </p>

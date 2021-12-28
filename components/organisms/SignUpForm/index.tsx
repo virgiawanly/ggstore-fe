@@ -25,7 +25,7 @@ export default function SignUpForm() {
 
   useEffect(() => {
     const getLocalForm = localStorage.getItem("user-form");
-    const localForm = JSON.parse(getLocalForm);
+    const localForm = JSON.parse(getLocalForm!);
     if (localForm) {
       setName(localForm.name ?? "");
       setEmail(localForm.email ?? "");

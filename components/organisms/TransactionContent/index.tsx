@@ -3,7 +3,7 @@ import NumberFormat from "react-number-format";
 import { toast } from "react-toastify";
 import { TransactionHistoryTypes } from "../../../services/data-types";
 import { getMemberTransactions } from "../../../services/member";
-import TableRow from "../TransactionContent/TableRow";
+import TableRow from "./TableRow";
 import ButtonTab from "./ButtonTab";
 
 export default function TransactionContent() {

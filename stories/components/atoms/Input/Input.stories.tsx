@@ -3,13 +3,13 @@ import Input, { InputProps } from "../../../../components/atoms/Input";
 
 export default {
   title: "Components/Atoms/Input",
-  components: Input
+  components: Input,
 } as Meta;
 
-const Template = (args: InputProps) => <Input {...args} />
+const Template = (args: InputProps) => <Input {...args} />;
 
 export const Default = Template.bind({});
 
 Default.args = {
-    label: "Nama Lengkap"
-}
+  label: "Nama Lengkap",
+};

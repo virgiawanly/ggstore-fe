@@ -1,6 +1,6 @@
+import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import cn from "classnames";
 
 interface MenuItemProps {
   title: string;
@@ -18,12 +18,20 @@ interface MenuItemProps {
 }
 
 export default function MenuItem(props: Partial<MenuItemProps>) {
-  const { title, icon, active, href, onClick } = props;
+  const {
+    title,
+    icon,
+    active,
+    href = "",
+    onClick
+  } = props;
+
   const classItem = cn({
     item: true,
     "mb-30": true,
-    active: active,
+    active,
   });
+
   return (
     <div className={classItem} onClick={onClick}>
       <div className="me-3">

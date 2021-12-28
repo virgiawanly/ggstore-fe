@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   BankTypes,
   NominalTypes,
@@ -7,7 +8,6 @@ import {
 } from "../../../services/data-types";
 import NominalItem from "./NominalItem";
 import PaymentItem from "./PaymentItem";
-import { toast } from "react-toastify";
 
 interface TopupFormProps {
   nominals: NominalTypes[];
@@ -20,8 +20,8 @@ export default function TopupForm(props: TopupFormProps) {
 
   const [verifyID, setVerifyID] = useState("");
   const [bankAccountName, setBankAccountName] = useState("");
-  const [nominalItem, setNominalItem] = useState(null);
-  const [paymentItem, setPaymentItem] = useState(null);
+  const [nominalItem, setNominalItem] = useState({});
+  const [paymentItem, setPaymentItem] = useState({});
 
   const changeNominalHandler = (data: NominalTypes) => {
     setNominalItem(data);
@@ -34,27 +34,24 @@ export default function TopupForm(props: TopupFormProps) {
 
   const submitHandler = () => {
     if (
-      verifyID === "" ||
-      bankAccountName === "" ||
-      !nominalItem ||
-      !paymentItem
+      verifyID === "" || bankAccountName === "" || !nominalItem || !paymentItem
     ) {
-      return toast.error("Silahkan isi semua data!");
+      toast.error("Silahkan isi semua data!");
+    } else {
+      const data = {
+        verifyID,
+        bankAccountName,
+        nominalItem,
+        paymentItem,
+      };
+
+      localStorage.setItem("data-topup", JSON.stringify(data));
+      router.push("/checkout");
     }
-
-    const data = {
-      verifyID,
-      bankAccountName,
-      nominalItem,
-      paymentItem,
-    };
-
-    localStorage.setItem("data-topup", JSON.stringify(data));
-    router.push("/checkout");
   };
 
   return (
-    <form action="./checkout.html" method="POST">
+    <>
       <div className="pt-md-50 pt-30">
         <div className="">
           <label className="htmlForm-label text-lg fw-medium color-palette-1 mb-10">
@@ -93,17 +90,15 @@ export default function TopupForm(props: TopupFormProps) {
         </p>
         <fieldset id="paymentMethod">
           <div className="row justify-content-between">
-            {payments.map((payment) =>
-              payment.banks.map((bank) => (
-                <PaymentItem
-                  key={bank._id}
-                  bankId={bank._id}
-                  type={payment.type}
-                  bankName={bank.bankName}
-                  onChange={() => changePaymentHandler(payment, bank)}
-                />
-              ))
-            )}
+            {payments.map((payment) => payment.banks.map((bank) => (
+              <PaymentItem
+                key={bank._id}
+                bankId={bank._id}
+                type={payment.type}
+                bankName={bank.bankName}
+                onChange={() => changePaymentHandler(payment, bank)}
+              />
+            )))}
             <div className="col-lg-4 col-sm-6" />
           </div>
         </fieldset>
@@ -129,6 +124,6 @@ export default function TopupForm(props: TopupFormProps) {
           Continue
         </button>
       </div>
-    </form>
+    </>
   );
 }

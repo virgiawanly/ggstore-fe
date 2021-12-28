@@ -11,7 +11,14 @@ interface TableRowProps {
 }
 
 export default function TableRow(props: TableRowProps) {
-  const { title, category, item, price, status, image } = props;
+  const {
+    title,
+    category,
+    item,
+    price,
+    status,
+    image
+  } = props;
 
   const statusClass = cn({
     "float-start icon-status": true,
@@ -58,7 +65,7 @@ export default function TableRow(props: TableRowProps) {
       </td>
       <td>
         <div>
-          <span className={statusClass}></span>
+          <span className={statusClass} />
           <p className="fw-medium text-start color-palette-1 m-0 position-relative">
             {status}
           </p>

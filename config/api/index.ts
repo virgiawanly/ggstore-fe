@@ -48,7 +48,7 @@ const callAPI = async ({
     const res = err.response;
     return {
       success: false,
-      message: res.data.message ?? "Error",
+      message: res.data?.message ?? "Error",
       data: null,
     };
   }

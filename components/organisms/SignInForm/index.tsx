@@ -20,7 +20,7 @@ export default function SignInForm() {
 
     const res = await postSignIn(payload);
     if (res.success) {
-      const token = res.data.token;
+      const { token } = res.data;
       const tokenBase64 = btoa(token);
       Cookies.set("token", tokenBase64, { expires: 1 });
       return router.push("/");

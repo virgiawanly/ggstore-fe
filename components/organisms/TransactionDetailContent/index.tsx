@@ -1,6 +1,6 @@
+import cn from "classnames";
 import { TransactionHistoryTypes } from "../../../services/data-types";
 import Row from "./Row";
-import cn from "classnames";
 
 interface TransactionDetailContentProps {
   data: TransactionHistoryTypes;
@@ -24,7 +24,8 @@ export default function TransactionDetailContent(
     <main className="main-wrapper">
       <div className="ps-lg-0">
         <h2 className="text-4xl fw-bold color-palette-1 mb-30">
-          Details #{data._id}
+          Details #
+          {data._id}
         </h2>
         <div className="details">
           <div className="main-content main-content-card overflow-auto">

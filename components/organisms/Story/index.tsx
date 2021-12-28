@@ -19,13 +19,15 @@ export default function Story() {
             <div className="">
               <h2 className="text-4xl fw-bold color-palette-1 mb-30">
                 Win the battle.
-                <br /> Be the Champion.
+                <br />
+                Be the Champion.
               </h2>
               <p className="text-lg color-palette-1 mb-30">
                 Kami menyediakan jutaan cara untuk
                 <br className="d-sm-block d-none" />
                 membantu players menjadi
-                <br className="d-sm-block d-none" /> pemenang sejati
+                <br className="d-sm-block d-none" />
+                pemenang sejati
               </p>
               <div className="d-md-block d-flex flex-column w-100">
                 <a

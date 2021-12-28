@@ -1,5 +1,5 @@
-import Link from "next/link";
 import cn from "classnames";
+import Link from "next/link";
 import NumberFormat from "react-number-format";
 
 interface TableRowProps {
@@ -13,7 +13,15 @@ interface TableRowProps {
 }
 
 export default function TableRow(props: TableRowProps) {
-  const { id, image, title, category, item, price, status } = props;
+  const {
+    id,
+    image,
+    title,
+    category,
+    item,
+    price,
+    status
+  } = props;
   const statusClass = cn({
     "float-start icon-status": true,
     pending: status === "pending",

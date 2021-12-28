@@ -2,7 +2,7 @@ import cn from "classnames";
 
 interface ButtonTabProps {
   title: string;
-  active?: boolean;
+  active: boolean;
   onClick: () => void;
 }
 

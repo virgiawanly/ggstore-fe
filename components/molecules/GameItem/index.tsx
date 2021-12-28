@@ -9,7 +9,12 @@ export interface GameItemProps {
 }
 
 export default function GameItem(props: GameItemProps) {
-  const { title, category, thumbnail, id } = props;
+  const {
+    title,
+    category,
+    thumbnail,
+    id
+  } = props;
   return (
     <div className="featured-game-card position-relative">
       <Link href={`/detail/${id}`}>
