@@ -1,7 +1,30 @@
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import {
+  TopupCategoryTypes,
+  TransactionHistoryTypes,
+} from "../../../services/data-types";
+import { getMemberOverview } from "../../../services/player";
 import TableRow from "./TableRow";
 import TopupCategory from "./TopupCategory";
 
 export default function OverviewContent() {
+  const [counts, setCounts] = useState([]);
+  const [data, setData] = useState([]);
+
+  const fetchMemberOverview = useCallback(async () => {
+    const res = await getMemberOverview();
+    if (!res.success) {
+      toast.error("Gagal mengambil data");
+    }
+    setCounts(res.data.counts);
+    setData(res.data.data);
+  }, []);
+
+  useEffect(() => {
+    fetchMemberOverview();
+  }, []);
+
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
@@ -12,21 +35,15 @@ export default function OverviewContent() {
           </p>
           <div className="main-content">
             <div className="row">
-              <TopupCategory icon="ic-category-desktop" nominal={18500000}>
-                Game
-                <br />
-                Desktop
-              </TopupCategory>
-              <TopupCategory icon="ic-category-mobile" nominal={84450000}>
-                Game
-                <br />
-                Mobile
-              </TopupCategory>
-              <TopupCategory icon="ic-category-others" nominal={5000000}>
-                Other
-                <br />
-                Categories
-              </TopupCategory>
+              {counts.map((category: TopupCategoryTypes) => (
+                <TopupCategory
+                  key={category._id}
+                  icon="ic-category-others"
+                  nominal={category.value}
+                >
+                  {category.name}
+                </TopupCategory>
+              ))}
             </div>
           </div>
         </div>
@@ -47,38 +64,17 @@ export default function OverviewContent() {
                 </tr>
               </thead>
               <tbody>
-                <TableRow
-                  title="Valorant"
-                  category="Desktop"
-                  item="1000 VP"
-                  price={149000}
-                  status="Success"
-                  image="/img/Thumbnail-1.png"
-                />
-                <TableRow
-                  title="Call Of Duty Mobile"
-                  category="Mobile"
-                  item="550 Gold"
-                  price={90000}
-                  status="Pending"
-                  image="/img/Thumbnail-2.png"
-                />
-                <TableRow
-                  title="Clash Of Clans"
-                  category="Mobile"
-                  item="1000 Gems"
-                  price={24000}
-                  status="Success"
-                  image="/img/Thumbnail-3.png"
-                />
-                <TableRow
-                  title="Clash Royale"
-                  category="Mobile"
-                  item="1000 Gems"
-                  price={20000}
-                  status="Failed"
-                  image="/img/Thumbnail-4.png"
-                />
+                {data.map((item: TransactionHistoryTypes) => (
+                  <TableRow
+                    key={item._id}
+                    title={item.voucherTopupHistory.gameName}
+                    category={item.voucherTopupHistory.category}
+                    item={`${item.voucherTopupHistory.coinQuantity} ${item.voucherTopupHistory.coinName}`}
+                    price={item.value}
+                    status={item.status}
+                    image={item.voucherTopupHistory.thumbnail}
+                  />
+                ))}
               </tbody>
             </table>
           </div>

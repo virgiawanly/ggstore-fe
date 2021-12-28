@@ -26,10 +26,12 @@ const callAPI = async ({ url, method, data, token }: CallAPIProps) => {
       headers,
     });
 
+    const { length } = Object.keys(res.data);
+
     return {
       success: true,
-      message: res.data.message ?? "success",
-      data: res.data.data,
+      message: res.data.data.message ?? "success",
+      data: length > 1 ? res.data : res.data.data,
     };
   } catch (err: any) {
     const res = err.response;

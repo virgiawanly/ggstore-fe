@@ -35,7 +35,15 @@ export default function Checkout(props: CheckoutProps) {
   );
 }
 
-export const getServerSideProps = async ({ req }) => {
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
+}
+
+export const getServerSideProps = async ({ req }: GetServerSideProps) => {
   const { token } = req.cookies;
   if (!token) {
     return {

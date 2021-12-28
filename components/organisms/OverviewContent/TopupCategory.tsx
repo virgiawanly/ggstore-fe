@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Image from "next/image";
+import NumberFormat from "react-number-format";
 
 interface TopupCategoryProps {
   children: ReactNode;
@@ -18,7 +19,15 @@ export default function TopupCategory(props: TopupCategoryProps) {
         </div>
         <div>
           <p className="text-sm color-palette-2 mb-1">Total Spent</p>
-          <p className="text-2xl color-palette-1 fw-medium m-0">{nominal}</p>
+          <p className="text-2xl color-palette-1 fw-medium m-0">
+            <NumberFormat
+              value={nominal}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              prefix="Rp "
+            />
+          </p>
         </div>
       </div>
     </div>

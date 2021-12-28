@@ -26,7 +26,7 @@ export default function SignInForm() {
       return router.push("/");
     }
 
-    return toast.error(res.message ?? "Email atau password salah");
+    return toast.error("Email atau password salah");
   };
 
   return (
